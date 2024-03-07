@@ -130,20 +130,33 @@ public class Menu extends javax.swing.JFrame {
         
         //Armazenando o resultado da funcao na matriz representando o angulo
         float[][] angulo = Calculos.gerarProblema(qtd, min, max, random);
-        
+                        Campo_Resultado.setText("");
+
         //Imprimindo o resultado da matriz
         for(int i=0; i<angulo.length; i++){
             for(int j=0; j<angulo[i].length; j++){
                 Campo_Resultado.append(String.format("%.2f\n", angulo[i][j]));
                 System.out.println("" + String.format("%.2f", angulo[i][j]));
-                
+
             }
         }
+
     }//GEN-LAST:event_btn_GerarProblemaActionPerformed
 
     private void btn_Solucao_IncialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Solucao_IncialActionPerformed
         // TODO add your handling code here:
+        int qtd = Integer.parseInt(Campo_Tam_Prob.getText());
+        calculo.setTamanhoProblema(qtd);
         
+        float[] solucao = calculo.SolucaoIncial(qtd);
+        
+        Campo_Resultado.setText("");
+
+        for(int i=0; i<solucao.length; i++){
+            Campo_Resultado.removeAll();
+            Campo_Resultado.append(String.format("%.2f\n", solucao[i]));
+        System.out.println(solucao[i]);
+        }
     }//GEN-LAST:event_btn_Solucao_IncialActionPerformed
 
     /**

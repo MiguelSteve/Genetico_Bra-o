@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package funcoes;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
@@ -41,6 +42,8 @@ public class Calculos {
         Calculos.maximo = maximo;
     }
     
+    
+    //Funcao para  Gerar o Problema
     public static float[][] gerarProblema(int qtd, int min, int max, Random random){
         //Criando a matriz do angulo que o braco percorrera
         float [][] angulo = new float[qtd][qtd];
@@ -65,6 +68,30 @@ public class Calculos {
    
     }
     
+    //Funcao para gerar a Solucao Inicial
+    public static float[] SolucaoIncial(int qtd)
+    {
+        //Criando o vetor que armazenara a solucao
+        float[] solucao = new float [qtd];
+        
+        //Instanciando a biblioteca de randomizacao
+        Random random = new Random();
+        
+        //Laco para guardar os valores de 0 ao numero limite de problemas dentro do vetor
+        for(int i=0; i<qtd; i++){
+            solucao[i] = i;
+        }
+        
+        //Embaralha os valores
+        for(int i=0; i<qtd; i++){
+            float index = (float) Math.random();
+            int randomIndex = (int) (index * qtd);
+            float temp = solucao[i];
+            solucao[i] = solucao[randomIndex];
+            solucao[randomIndex] = temp;
+        }
+        return solucao;
+    }
 
     
     }
