@@ -95,14 +95,27 @@ public class Calculos {
         }
         
         //Embaralha os valores
-        for(int i=0; i<qtd; i++){
-            float index = (float) Math.random();
-            int randomIndex = (int) (index * qtd);
-            float temp = solucao[i];
-            solucao[i] = solucao[randomIndex];
-            solucao[randomIndex] = temp;
+        for(int i=solucao.length - 1; i>0; i--){
+            int index = random.nextInt(i + 1);
+            float temp = solucao[index];
+            solucao[index] = solucao[i];
+            solucao[i] = temp;
+            
         }
         return solucao;
+    }
+    
+    public static float Avalia(float[] solucao, int qtd, float[][] anguloO, float[][] anguloT){
+        float CustoTotal = 0;
+        
+        
+        for(int i=0; i<qtd-1; i++){
+            int AnguloAtual = (int) solucao[i];
+            int ProximoAngulo = (int) solucao[i+1];
+            
+            CustoTotal += (AnguloAtual * anguloO[AnguloAtual][ProximoAngulo] * anguloT[AnguloAtual][ProximoAngulo]);
+        }
+        return CustoTotal;
     }
     
  

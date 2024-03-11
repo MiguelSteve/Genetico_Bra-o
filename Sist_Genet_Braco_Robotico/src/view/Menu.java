@@ -15,6 +15,11 @@ public class Menu extends javax.swing.JFrame {
     Calculos calculo = new Calculos();
     
     Random random = new Random();
+    
+    
+    //Variaveis resultados
+    static float[][][] angulo;
+    static float[] solucao;
     /**
      * Creates new form Menu
      */
@@ -63,6 +68,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btn_Avalia_Problema.setText("Avalia Problema");
+        btn_Avalia_Problema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Avalia_ProblemaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Tamanho do problema");
 
@@ -136,8 +146,9 @@ public class Menu extends javax.swing.JFrame {
         calculo.setMinT(minT);
         
         //Armazenando o resultado da funcao na matriz representando o angulo
-        float[][][] angulo = Calculos.gerarProblema(qtd, minO, maxO, minT, maxT, random);
-                        Campo_Resultado.setText("");
+        angulo = Calculos.gerarProblema(qtd, minO, maxO, minT, maxT, random);
+        
+        Campo_Resultado.setText("");
 
         //Imprimindo o resultado da matriz
         for(int i=0; i<angulo.length; i++){
@@ -156,16 +167,27 @@ public class Menu extends javax.swing.JFrame {
         int qtd = Integer.parseInt(Campo_Tam_Prob.getText());
         calculo.setTamanhoProblema(qtd);
         
-        float[] solucao = calculo.SolucaoIncial(qtd);
+        solucao = calculo.SolucaoIncial(qtd);
         
         Campo_Resultado.setText("");
 
         for(int i=0; i<solucao.length; i++){
-            Campo_Resultado.removeAll();
             Campo_Resultado.append(String.format("%.2f\n", solucao[i]));
         System.out.println(solucao[i]);
         }
     }//GEN-LAST:event_btn_Solucao_IncialActionPerformed
+
+    private void btn_Avalia_ProblemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Avalia_ProblemaActionPerformed
+        // TODO add your handling code here:
+        int qtd = Integer.parseInt(Campo_Tam_Prob.getText());
+        calculo.setTamanhoProblema(qtd);
+        float[][] anguloO = angulo[0];
+        float[][] anguloT = angulo[1];
+        
+        float avalia = calculo.Avalia(solucao, qtd, anguloO, anguloT);
+        Campo_Resultado.setText("");
+        Campo_Resultado.setText(String.format("%.2f\n", avalia));
+    }//GEN-LAST:event_btn_Avalia_ProblemaActionPerformed
 
     /**
      * @param args the command line arguments
