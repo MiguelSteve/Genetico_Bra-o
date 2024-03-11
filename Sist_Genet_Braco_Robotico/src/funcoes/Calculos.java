@@ -14,7 +14,39 @@ import java.util.Random;
  */
 public class Calculos {
     public static int tamanhoProblema;
-    public static int minimo, maximo;
+    public static float minO, maxO, maxT, minT;
+
+    public static float getMinO() {
+        return minO;
+    }
+
+    public static void setMinO(float minO) {
+        Calculos.minO = minO;
+    }
+
+    public static float getMaxO() {
+        return maxO;
+    }
+
+    public static void setMaxO(float maxO) {
+        Calculos.maxO = maxO;
+    }
+
+    public static float getMaxT() {
+        return maxT;
+    }
+
+    public static void setMaxT(float maxT) {
+        Calculos.maxT = maxT;
+    }
+
+    public static float getMinT() {
+        return minT;
+    }
+
+    public static void setMinT(float minT) {
+        Calculos.minT = minT;
+    }
     
 
     public static int getTamanhoProblema() {
@@ -26,46 +58,26 @@ public class Calculos {
     }
     
 
-    public static int getMinimo() {
-        return minimo;
-    }
-
-    public static void setMinimo(int minimo) {
-        Calculos.minimo = minimo;
-    }
-
-    public static int getMaximo() {
-        return maximo;
-    }
-
-    public static void setMaximo(int maximo) {
-        Calculos.maximo = maximo;
-    }
     
     
     //Funcao para  Gerar o Problema
-    public static float[][] gerarProblema(int qtd, int min, int max, Random random){
-        //Criando a matriz do angulo que o braco percorrera
-        float [][] angulo = new float[qtd][qtd];
-        
-        //Lacos para percorrer cada posicao na matriz
-        for(int h=0; h<qtd; h++){
-            for(int v=0; v<qtd; v++){
-                
-                //Condicao para conferir se o braco esta fora da diagonal principal
-                if(h!=v){
-                    //caso seja verdadeiro, adiciona os numeros aleatorios dentro da matriz do angulo
-                    angulo[h][v] = random.nextFloat(max - min + 1) + 1;
-                }
-                else{
-                    //caso o braco esteja na diagonal principal o angulo e definido como 0 
-                    angulo[h][v] = 0;
+    //MinO = minimo objetos, MinT = minimo tempo
+ public static float[][][] gerarProblema(int qtd, float minO, float maxO, float minT, float maxT, Random random) {
+        float[][] anguloO = new float[qtd][qtd];
+        float[][] anguloT = new float[qtd][qtd];
+
+        for (int h = 0; h < qtd; h++) {
+            for (int v = 0; v < qtd; v++) {
+                if (h != v) {
+                    anguloO[h][v] = minO + random.nextFloat() * (maxO - minO);
+                    anguloT[h][v] = minT + random.nextFloat() * (maxT - minT);
+                } else {
+                    anguloO[h][v] = 0;
+                    anguloT[h][v] = 0;
                 }
             }
         }
-     return angulo;
-     
-   
+        return new float[][][]{anguloO, anguloT};
     }
     
     //Funcao para gerar a Solucao Inicial
@@ -92,6 +104,8 @@ public class Calculos {
         }
         return solucao;
     }
+    
+ 
 
     
     }

@@ -122,22 +122,30 @@ public class Menu extends javax.swing.JFrame {
         //definindo valores da funcao GerarProblema
         int qtd = Integer.parseInt(Campo_Tam_Prob.getText());
         calculo.setTamanhoProblema(qtd);
-        int min = 5;
-        int max = 10;
+        float minO = 5;
+        float maxO = 10;
+        float minT = 1;
+        float maxT = 10;
+
         
-        calculo.setMinimo(min);
-        calculo.setMaximo(max);
+        
+        calculo.setMaxO(maxO);
+        calculo.setMinO(minO);
+        
+        calculo.setMaxT(maxT);
+        calculo.setMinT(minT);
         
         //Armazenando o resultado da funcao na matriz representando o angulo
-        float[][] angulo = Calculos.gerarProblema(qtd, min, max, random);
+        float[][][] angulo = Calculos.gerarProblema(qtd, minO, maxO, minT, maxT, random);
                         Campo_Resultado.setText("");
 
         //Imprimindo o resultado da matriz
         for(int i=0; i<angulo.length; i++){
             for(int j=0; j<angulo[i].length; j++){
-                Campo_Resultado.append(String.format("%.2f\n", angulo[i][j]));
-                System.out.println("" + String.format("%.2f", angulo[i][j]));
-
+                for(int h=0; h<angulo[i][j].length; h++){
+                Campo_Resultado.append(String.format("%.2f\n", angulo[i][j][h]));
+                System.out.println("" + String.format("%.2f", angulo[i][j][h]));
+                }
             }
         }
 
