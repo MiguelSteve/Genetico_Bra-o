@@ -15,6 +15,14 @@ import java.util.Random;
 public class Calculos {
     public static int tamanhoProblema;
     public static float minO, maxO, maxT, minT;
+    
+    //Variavel de normalizacao entre os componentes (Obtido empiricamente)
+    public static float D = (float) 4.17;
+    
+    
+    //Variavel da Distancia dos Objetos
+    public static float DistanciaObjeto = 3;
+    
 
     public static float getMinO() {
         return minO;
@@ -91,7 +99,7 @@ public class Calculos {
         
         //Laco para guardar os valores de 0 ao numero limite de problemas dentro do vetor
         for(int i=0; i<qtd; i++){
-            solucao[i] = i;
+            solucao[i] = i+1;
         }
         
         //Embaralha os valores
@@ -106,19 +114,77 @@ public class Calculos {
     }
     
     public static float Avalia(float[] solucao, int qtd, float[][] anguloO, float[][] anguloT){
-        float CustoTotal = 0;
         
+                float CustoTotal = 0;
+
+        int[] pesoA = new int [5];
+        int valorPesoA = 1;
+        int[] pesoB = {1, 3, 10};
         
-        for(int i=0; i<qtd-1; i++){
-            int AnguloAtual = (int) solucao[i];
-            int ProximoAngulo = (int) solucao[i+1];
+        int[] tempo = new int [255];
+        int valorTempo = 1;
+        
+        int NumAgentes = pesoA.length;
+        int CustoTotalAgente;
+        
+        //Preenche os valores do Peso A deacordo com a tabela do artigo
+        for(int i=0; i<5; i++){
+            if(valorPesoA == 3){
+                valorPesoA++;
+            }
+            pesoA[i] = valorPesoA;
+            valorPesoA++;
             
-            CustoTotal += (AnguloAtual * anguloO[AnguloAtual][ProximoAngulo] * anguloT[AnguloAtual][ProximoAngulo]);
+            //Imprimindo valores para verificar se esta correto
+            System.out.println(pesoA[i]);
         }
+        
+        for(int i=0; i<255; i++){
+            tempo[i] = valorTempo;
+            valorTempo++;
+        }
+        
+        //Valor Incial do Custo dos Agentes
+        int Custo = 0;
+
+        
+        for(int i=0; i<pesoA.length; i++){
+            for(int j=0; j<pesoB.length; j++){
+                for(int t=0; t<tempo.length; t++){
+                    
+                    Custo += CalculoAgente(pesoA[i], pesoB[j], tempo[t]);
+                    
+                }
+            }
+                        
+        }
+        
+        System.out.println(Custo);
+        
+        CustoTotal += Avaliar(Custo, D, DistanciaObjeto);
+        
+        System.out.println(CustoTotal);
+        
+        
+
         return CustoTotal;
+        
+     
     }
     
- 
+    //Calculo de custo de cada Agente
+    private static int CalculoAgente(int id, int acao, int tempo){
+        return id * acao * tempo;
+    }
+    
+    
+    //Calculo para Avaliar
+    private static float Avaliar(int custo, float D, float DistanciaObjeto){
+        
+        float avaliacao = custo/5 + D * DistanciaObjeto;
+        
+        return avaliacao;
+    }
 
     
     }
