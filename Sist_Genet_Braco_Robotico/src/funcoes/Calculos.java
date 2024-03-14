@@ -125,7 +125,10 @@ public class Calculos {
         int valorTempo = 1;
         
         int NumAgentes = pesoA.length;
-        int CustoTotalAgente;
+        int CustoTotalAgente = 0;
+        
+        float[] sol = SolucaoIncial(qtd);
+        
         
         //Preenche os valores do Peso A deacordo com a tabela do artigo
         for(int i=0; i<5; i++){
@@ -134,9 +137,7 @@ public class Calculos {
             }
             pesoA[i] = valorPesoA;
             valorPesoA++;
-            
-            //Imprimindo valores para verificar se esta correto
-            System.out.println(pesoA[i]);
+           
         }
         
         for(int i=0; i<255; i++){
@@ -147,7 +148,7 @@ public class Calculos {
         //Valor Incial do Custo dos Agentes
         int Custo = 0;
 
-        
+        //Laco para calcular o custo de Cada Agente de 1 a 255 segundos
         for(int i=0; i<pesoA.length; i++){
             for(int j=0; j<pesoB.length; j++){
                 for(int t=0; t<tempo.length; t++){
@@ -159,9 +160,19 @@ public class Calculos {
                         
         }
         
+        //Laco para Calcular a soma do Custo de todos os Agentes com base na Solucao Inicial 
+        for(int i=0; i<sol.length; i++){
+           
+            CustoTotalAgente += calcularCustoAgente((int)sol[i], pesoB, tempo);
+        }
+        
+        System.out.println(CustoTotalAgente);
+        
         System.out.println(Custo);
         
-        CustoTotal += Avaliar(Custo, D, DistanciaObjeto);
+        
+        //Aplica a Avaliacao do problema
+        CustoTotal += Avaliar(CustoTotalAgente, D, DistanciaObjeto);
         
         System.out.println(CustoTotal);
         
@@ -177,9 +188,19 @@ public class Calculos {
         return id * acao * tempo;
     }
     
+ public static int calcularCustoAgente(int id, int[] acoes, int[] tempos) {
+        int custoTotal = 0;
+        for (int acao : acoes) {
+            for (int tempo : tempos) {
+                custoTotal += CalculoAgente(id, acao, tempo);
+            }
+        }
+        return custoTotal;
+    }
     
     //Calculo para Avaliar
     private static float Avaliar(int custo, float D, float DistanciaObjeto){
+        
         
         float avaliacao = custo/5 + D * DistanciaObjeto;
         
