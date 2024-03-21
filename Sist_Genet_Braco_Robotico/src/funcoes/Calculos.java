@@ -15,7 +15,8 @@ import java.util.Random;
 public class Calculos {
     public static int tamanhoProblema;
     public static float minO, maxO, maxT, minT;
-    
+    public static float[] Angulo1;
+    public static float[] Angulo2;
     //Variavel de normalizacao entre os componentes (Obtido empiricamente)
     public static float D = (float) 4.17;
     
@@ -70,22 +71,21 @@ public class Calculos {
     
     //Funcao para  Gerar o Problema
     //MinO = minimo objetos, MinT = minimo tempo
- public static float[][][] gerarProblema(int qtd, float minO, float maxO, float minT, float maxT, Random random) {
-        float[][] anguloO = new float[qtd][qtd];
-        float[][] anguloT = new float[qtd][qtd];
-
-        for (int h = 0; h < qtd; h++) {
-            for (int v = 0; v < qtd; v++) {
-                if (h != v) {
-                    anguloO[h][v] = minO + random.nextFloat() * (maxO - minO);
-                    anguloT[h][v] = minT + random.nextFloat() * (maxT - minT);
-                } else {
-                    anguloO[h][v] = 0;
-                    anguloT[h][v] = 0;
+    public static float[][] gerarProblema(int qtd, float min, float max, Random random) {
+        
+        float[][] matriz = new float[qtd][qtd];
+        
+        for(int i=0; i<qtd; i++){
+            for(int j=0; j<qtd; j++){
+                if(i!=j){
+                    matriz[i][j] = random.nextFloat(max - min + 1) + min;
+                }
+                else{
+                    matriz[i][j] = 0;
                 }
             }
         }
-        return new float[][][]{anguloO, anguloT};
+     return matriz;
     }
     
     //Funcao para gerar a Solucao Inicial
@@ -113,9 +113,9 @@ public class Calculos {
         return solucao;
     }
     
-    public static float Avalia(float[] solucao, int qtd, float[][] anguloO, float[][] anguloT){
+    public static float Avalia(float[] solucao, int qtd, float[][] Angulo1, float[][] Angulo2){
         
-                float CustoTotal = 0;
+        float CustoTotal = 0;
 
         int[] pesoA = new int [5];
         int valorPesoA = 1;
@@ -124,7 +124,6 @@ public class Calculos {
         int[] tempo = new int [255];
         int valorTempo = 1;
         
-        int NumAgentes = pesoA.length;
         int CustoTotalAgente = 0;
         
         float[] sol = SolucaoIncial(qtd);
@@ -156,13 +155,13 @@ public class Calculos {
                     Custo += CalculoAgente(pesoA[i], pesoB[j], tempo[t]);
                     
                 }
-            }
-                        
+            }           
         }
+
         
         //Laco para Calcular a soma do Custo de todos os Agentes com base na Solucao Inicial 
         for(int i=0; i<sol.length; i++){
-           
+            
             CustoTotalAgente += calcularCustoAgente((int)sol[i], pesoB, tempo);
         }
         
