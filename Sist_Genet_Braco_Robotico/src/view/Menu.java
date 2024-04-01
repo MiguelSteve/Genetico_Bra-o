@@ -13,8 +13,8 @@ import java.util.Random;
 public class Menu extends javax.swing.JFrame {
 
     Calculos calculo = new Calculos();
-    public static float[][] Angulo1;
-    public static float[][] Angulo2;
+    public static float[][] Custo_O;
+    public static float[][] Custo_T;
     Random random = new Random();
     
     
@@ -134,9 +134,9 @@ public class Menu extends javax.swing.JFrame {
         int qtd = Integer.parseInt(Campo_Tam_Prob.getText());
         calculo.setTamanhoProblema(qtd);
         float minO = 5;
-        float maxO = 10;
+        float maxO = 40;
         float minT = 1;
-        float maxT = 10;
+        float maxT = 5;
 
         
         
@@ -147,29 +147,39 @@ public class Menu extends javax.swing.JFrame {
         calculo.setMinT(minT);
         
         //Armazenando o resultado da funcao na matriz representando o angulo
-        Angulo1 = calculo.gerarProblema(qtd, minO, maxO, random);
-        Angulo2 = calculo.gerarProblema(qtd, minT, maxT, random);
+        Custo_O = calculo.gerarProblema(qtd, minO, maxO, random);
+        Custo_T = calculo.gerarProblema(qtd, minT, maxT, random);
         
         
         Campo_Resultado.setText("");
 
         //Imprimindo o resultado da matriz
-        for(int i=0; i<Angulo1.length; i++){
-            for(int j=0; j<Angulo2.length; j++){
+        for(int i=0; i<Custo_O.length; i++){
+            for(int j=0; j<Custo_T.length; j++){
                 
-                Campo_Resultado.append(String.format("%.2f\n", Angulo1[i][j]));
-                Campo_Resultado.append(String.format("%.2f\n", Angulo2[i][j]));
-                Campo_Resultado.append("=======================================\n");
+                Campo_Resultado.append(String.format("%.2f\n", Custo_O[i][j]));
 
 
-                System.out.println("" + String.format("%.2f", Angulo1[i][j]));
-                System.out.println("" + String.format("%.2f", Angulo2[i][j]));
-                System.out.println("===============================================");
+                System.out.println("" + String.format("%.2f", Custo_O[i][j]));
 
                 
             }
         }
-        
+                        Campo_Resultado.append("=======================================\n");
+                        System.out.println("===============================================");
+
+
+        for(int i=0; i<Custo_T.length; i++){
+            for(int j=0; j<Custo_T.length; j++){
+                
+                Campo_Resultado.append(String.format("%.2f\n", Custo_T[i][j]));
+
+
+                System.out.println("" + String.format("%.2f", Custo_T[i][j]));
+
+                
+            }
+        }
     }//GEN-LAST:event_btn_GerarProblemaActionPerformed
 
     private void btn_Solucao_IncialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Solucao_IncialActionPerformed
@@ -192,7 +202,7 @@ public class Menu extends javax.swing.JFrame {
         int qtd = Integer.parseInt(Campo_Tam_Prob.getText());
         calculo.setTamanhoProblema(qtd);
         
-        float avalia = calculo.Avalia(solucao, qtd, Angulo1, Angulo2);
+        float avalia = calculo.Avalia(solucao, qtd, Custo_O, Custo_T);
         Campo_Resultado.setText("");
         Campo_Resultado.setText(String.format("%.2f\n", avalia));
     }//GEN-LAST:event_btn_Avalia_ProblemaActionPerformed

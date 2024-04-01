@@ -15,8 +15,8 @@ import java.util.Random;
 public class Calculos {
     public static int tamanhoProblema;
     public static float minO, maxO, maxT, minT;
-    public static float[] Angulo1;
-    public static float[] Angulo2;
+    public static float[][] Custo_O;
+    public static float[][] Custo_T;
     //Variavel de normalizacao entre os componentes (Obtido empiricamente)
     public static float D = (float) 4.17;
     
@@ -76,13 +76,18 @@ public class Calculos {
         float[][] matriz = new float[qtd][qtd];
         
         for(int i=0; i<qtd; i++){
+            float[] linha = new float[qtd];
+
             for(int j=0; j<qtd; j++){
                 if(i!=j){
-                    matriz[i][j] = random.nextFloat(max - min + 1) + min;
+                    linha[i] = random.nextFloat(min, max);
+                    
                 }
                 else{
-                    matriz[i][j] = 0;
+                    linha[i] = 0;
                 }
+            
+            matriz[i][j] += linha[i];
             }
         }
      return matriz;
@@ -99,7 +104,7 @@ public class Calculos {
         
         //Laco para guardar os valores de 0 ao numero limite de problemas dentro do vetor
         for(int i=0; i<qtd; i++){
-            solucao[i] = i+1;
+            solucao[i] = i;
         }
         
         //Embaralha os valores
@@ -113,13 +118,13 @@ public class Calculos {
         return solucao;
     }
     
-    public static float Avalia(float[] solucao, int qtd, float[][] Angulo1, float[][] Angulo2){
+    public static float Avalia(float[] solucao, int qtd, float[][] Custo_O, float[][] Custo_T){
         
         float CustoTotal = 0;
 
         int[] pesoA = new int [5];
         int valorPesoA = 1;
-        int[] pesoB = {1, 3, 10};
+        int[] pesoB = {1, 1, 1, 3, 1, 3, 1, 1, 10, 1};
         
         int[] tempo = new int [255];
         int valorTempo = 1;
