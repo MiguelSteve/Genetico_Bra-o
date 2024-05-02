@@ -23,23 +23,47 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="Btn_Tempera_Simulada" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="Btn_Sub_Encosta_Alterada" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btn_GerarProblema" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Campo_Tam_Prob" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btn_Solucao_Incial" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btn_Avalia_Problema" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Btn_Sucessores" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Btn_Subida_Encosta" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="jLabel1" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jLabel1" min="-2" pref="134" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jLabel2" pref="428" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btn_GerarProblema" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
-                          <Component id="Campo_Tam_Prob" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
-                          <Component id="btn_Solucao_Incial" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
-                          <Component id="btn_Avalia_Problema" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="Campo_Indice" max="32767" attributes="0"/>
+                          <Component id="jLabel3" max="32767" attributes="0"/>
+                          <Component id="Campo_Tempo_Max" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jLabel4" max="32767" attributes="0"/>
+                          <Component id="Campo_Temp_Inic" max="32767" attributes="0"/>
+                          <Component id="jLabel5" max="32767" attributes="0"/>
+                          <Component id="Campo_Temp_Final" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="68" max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Campo_Fat_Red" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="260" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -49,21 +73,55 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="22" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel1" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="Campo_Tam_Prob" min="-2" pref="33" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btn_GerarProblema" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="btn_Solucao_Incial" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btn_Avalia_Problema" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Campo_Tam_Prob" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="Campo_Indice" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btn_GerarProblema" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btn_Solucao_Incial" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Campo_Tempo_Max" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btn_Avalia_Problema" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Btn_Sucessores" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Campo_Temp_Inic" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Btn_Subida_Encosta" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Btn_Sub_Encosta_Alterada" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Campo_Temp_Final" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Component id="Campo_Fat_Red" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="80" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="Btn_Tempera_Simulada" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="127" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -119,5 +177,87 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="Btn_Sucessores">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sucessores"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_SucessoresActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="Campo_Indice">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Campo_IndiceActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valor Indice"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="Btn_Subida_Encosta">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Subida de Encosta"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_Subida_EncostaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="Btn_Sub_Encosta_Alterada">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Subida de Encosta Alterada"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_Sub_Encosta_AlteradaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tempo Max"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="Campo_Tempo_Max">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Campo_Tempo_MaxActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="Btn_Tempera_Simulada">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tempera Simulada"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_Tempera_SimuladaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Temperatura Inicial"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="Campo_Temp_Inic">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Campo_Temp_InicActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Temperatura Final"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="Campo_Temp_Final">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Campo_Temp_FinalActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fator Redutor"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="Campo_Fat_Red">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Campo_Fat_RedActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

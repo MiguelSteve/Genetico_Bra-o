@@ -3,43 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package funcoes;
+import java.beans.Customizer;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Random;
-
+import java.util.ArrayList;
+import java.util.Collections;
 /**
  *
  * @author Migue
  */
 public class Calculos {
     public static int tamanhoProblema;
-    public static float minO, maxO, maxT, minT;
-    public static float[][] Custo_O;
-    public static float[][] Custo_T;    
-    
+    public static float minO, maxO, maxT, minT;    
     //Variavel da Distancia dos Objetos
     public static float DistanciaObjeto = 3;
     
 
     public static float getMinO() {
         return minO;
-    }
-
-    public static float[][] getCusto_O() {
-        return Custo_O;
-    }
-
-    public static void setCusto_O(float[][] Custo_O) {
-        Calculos.Custo_O = Custo_O;
-    }
-
-    public static float[][] getCusto_T() {
-        return Custo_T;
-    }
-
-    public static void setCusto_T(float[][] Custo_T) {
-        Calculos.Custo_T = Custo_T;
     }
 
     public static void setMinO(float minO) {
@@ -136,13 +117,278 @@ public class Calculos {
         
         for(int i=0; i<qtd-1; i++){
             
-                avalia += Custo_O[solucao[i]][solucao[i+1]] + Custo_T[solucao[qtd - 1]][solucao[0]];
+                avalia += (Custo_O[solucao[i]][solucao[i+1]] * Custo_T[solucao[i]][solucao[i+1]]);
         }
+        avalia += (Custo_O[solucao[qtd - 1]][0] * Custo_T[solucao[qtd - 1]][solucao[0]]);
         return avalia;
         
     }
-
     
+    public static int[] Sucessores_Sol_Melhor(int[] atual, float Va, int qtd, float[][] Custo_O, float[][] Custo_T, int indice){
+        int [] melhor = atual.clone();
+        float Vm = Va;
+        int[] sucessor ;
+        
+        for(int i=0; i<qtd; i++){
+            sucessor = atual.clone();
+            int aux = sucessor[i];
+            sucessor[i] = sucessor[indice];
+            sucessor[indice] = aux;
+            float Vs = Avalia(sucessor, qtd, Custo_O, Custo_T);
+            
+            if(Vs < Vm){
+                melhor = sucessor.clone();
+                Vm = Vs;
+            }
+            
+        }
+        return melhor;
     }
+    
+    public static float Sucessores_Vm(int[] atual, float Va, int qtd, float[][] Custo_O, float[][] Custo_T, int indice){
+        int [] melhor = atual.clone();
+        float Vm = Va;
+        int[] sucessor;
+        
+        for(int i=0; i<qtd; i++){
+            sucessor = atual.clone();
+            int aux = sucessor[i];
+            sucessor[i] = sucessor[indice];
+            sucessor[indice] = aux;
+            float Vs = Avalia(sucessor, qtd, Custo_O, Custo_T);
+            
+            if(Vs < Vm){
+                melhor = sucessor.clone();
+                Vm = Vs;
+            }
+            
+        }
+        return Vm;
+    }
+    
+    public static int[] Subida_Encosta(int[] sol_ini, float Vi, int qtd, float[][] Custo_O, float[][] Custo_T){
+        int [] atual = sol_ini.clone();
+        float Va = Vi;
+       ArrayList<Integer> cid = new ArrayList<>();
+        for (int i = 0; i < qtd; i++) {
+            cid.add(i);
+        }
+        Collections.shuffle(cid);
+        
+        while(true){
+            int ind = cid.remove(cid.size() - 1);
+            
+            int[] novo = Sucessores_Sol_Melhor(atual, Va, qtd, Custo_O, Custo_T, ind);
+            
+            float Vn = Sucessores_Vm(atual, Va, qtd, Custo_O, Custo_T, ind);
+            
+            if(Vn >= Va){
+                return atual;
+            }
+            
+            atual = novo.clone();
+            Va = Vn;
+            
+            cid.clear();
+            
+            for(int i=0; i<qtd; i++){
+                cid.add(i);
+            }
+            Collections.shuffle(cid);
+        }
+    }
+    
+     public static float Subida_Encosta_Vm(int[] sol_ini, float Vi, int qtd, float[][] Custo_O, float[][] Custo_T){
+        int [] atual = sol_ini.clone();
+        float Va = Vi;
+       ArrayList<Integer> cid = new ArrayList<>();
+        for (int i = 0; i < qtd; i++) {
+            cid.add(i);
+        }
+        Collections.shuffle(cid);
+        
+        while(true){
+            int ind = cid.remove(cid.size() - 1);
+            
+            int[] novo = Sucessores_Sol_Melhor(atual, Va, qtd, Custo_O, Custo_T, ind);
+            
+            float Vn = Sucessores_Vm(atual, Va, qtd, Custo_O, Custo_T, ind);
+            
+            if(Vn >= Va){
+                return Va;
+            }
+            
+            atual = novo.clone();
+            Va = Vn;
+            
+            cid.clear();
+            
+            for(int i=0; i<qtd; i++){
+                cid.add(i);
+            }
+            Collections.shuffle(cid);
+        }
+    }
+    
+
+     public static int[] Subida_Encosta_Alt(int[] sol_ini, float Vi, int qtd, float[][] Custo_O, float[][] Custo_T, int t_max){
+        int [] atual = sol_ini.clone();
+        float Va = Vi;
+        int t = 0;
+       ArrayList<Integer> cid = new ArrayList<>();
+        for (int i = 0; i < qtd; i++) {
+            cid.add(i);
+        }
+        Collections.shuffle(cid);
+        
+        while(true){
+            int ind = cid.remove(cid.size() - 1);
+            
+            int[] novo = Sucessores_Sol_Melhor(atual, Va, qtd, Custo_O, Custo_T, ind);
+            
+            float Vn = Sucessores_Vm(atual, Va, qtd, Custo_O, Custo_T, ind);
+            
+            if(Vn >= Va){
+                if(t>=t_max){
+                 return atual;   
+                }
+                else{
+                    t += 1;
+                }
+            }
+            
+            else{
+                
+            atual = novo.clone();
+            Va = Vn;
+            t = 0;
+            cid.clear();
+            
+            for(int i=0; i<qtd; i++){
+                cid.add(i);
+            }
+            
+            Collections.shuffle(cid);
+            
+            }
+        }
+        
+        
+    }
+     
+     public static float Subida_Encosta_Alt_Vm(int[] sol_ini, float Vi, int qtd, float[][] Custo_O, float[][] Custo_T, int t_max){
+        int [] atual = sol_ini.clone();
+        float Va = Vi;
+        int t = 0;
+       ArrayList<Integer> cid = new ArrayList<>();
+        for (int i = 0; i < qtd; i++) {
+            cid.add(i);
+        }
+        Collections.shuffle(cid);
+        
+        while(true){
+            int ind = cid.remove(cid.size() - 1);
+            
+            int[] novo = Sucessores_Sol_Melhor(atual, Va, qtd, Custo_O, Custo_T, ind);
+            
+            float Vn = Sucessores_Vm(atual, Va, qtd, Custo_O, Custo_T, ind);
+            
+            if(Vn >= Va){
+                if(t>=t_max){
+                 return Va;   
+                }
+                else{
+                    t += 1;
+                }
+            }
+            
+            else{
+                
+            atual = novo.clone();
+            Va = Vn;
+            t = 0;
+            cid.clear();
+            
+            for(int i=0; i<qtd; i++){
+                cid.add(i);
+            }
+            
+            Collections.shuffle(cid);
+            
+            }
+        }
+    }
+     
+     public static int[] Tempera_Simulada_Resp(float temp_ini, float temp_fin, float fat_red, int[] Si, float Vi, int qtd, float[][] Custo_O, float[][] Custo_T, int ind){
+         int[] atual = Si.clone();
+         int[] resp = Si.clone();
+         float Va = Vi; 
+         float Vr = Va;
+         
+         float temp = temp_ini;
+         
+         while(temp>=temp_fin){
+             
+             int[] novo = Sucessores_Sol_Melhor(atual, Va, qtd, Custo_O, Custo_T, ind);
+             float Vn = Sucessores_Vm(atual, Va, qtd, Custo_O, Custo_T, ind);
+             float De = Va - Vn;
+             
+             if(De < 0){
+                 atual = novo.clone();
+                 resp = novo.clone();
+                 Vr = Va = Vn;
+             }
+             
+             else{
+             Random rd = new Random();
+             double ale = rd.nextDouble();
+             double aux = Math.exp(-De / temp);
+             
+             if(aux > ale){
+                 atual = novo.clone();
+                 Va = Vn;
+             }
+         }
+         temp = temp * fat_red;
+     }
+         return resp;
+}
+     
+     public static float Tempera_Simulada_Vr(float temp_ini, float temp_fin, float fat_red, int[] Si, float Vi, int qtd, float[][] Custo_O, float[][] Custo_T, int ind){
+         int[] atual = Si.clone();
+         int[] resp = Si.clone();
+         
+         float Va = Vi; 
+         float Vr = Va;
+         
+         float temp = temp_ini;
+         
+         while(temp>=temp_fin){
+             
+             int[] novo = Sucessores_Sol_Melhor(atual, Va, qtd, Custo_O, Custo_T, ind);
+             float Vn = Sucessores_Vm(atual, Va, qtd, Custo_O, Custo_T, ind);
+             float De = Va - Vn;
+             
+             if(De < 0){
+                 atual = novo.clone();
+                 resp = novo.clone();
+                 Vr = Va = Vn;
+             }
+             
+             else{
+             Random rd = new Random();
+             double ale = Math.random();
+             double aux = Math.exp(-De / temp);
+             
+             if(aux > ale){
+                 atual = novo.clone();
+                 Va = Vn;
+             }
+         }
+         temp = temp * fat_red;
+     }
+         return Vr;
+}
+}
     
   
