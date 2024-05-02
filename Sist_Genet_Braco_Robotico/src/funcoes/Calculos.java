@@ -16,10 +16,7 @@ public class Calculos {
     public static int tamanhoProblema;
     public static float minO, maxO, maxT, minT;
     public static float[][] Custo_O;
-    public static float[][] Custo_T;
-    //Variavel de normalizacao entre os componentes (Obtido empiricamente)
-    public static float D = (float) 4.17;
-    
+    public static float[][] Custo_T;    
     
     //Variavel da Distancia dos Objetos
     public static float DistanciaObjeto = 3;
@@ -27,6 +24,22 @@ public class Calculos {
 
     public static float getMinO() {
         return minO;
+    }
+
+    public static float[][] getCusto_O() {
+        return Custo_O;
+    }
+
+    public static void setCusto_O(float[][] Custo_O) {
+        Calculos.Custo_O = Custo_O;
+    }
+
+    public static float[][] getCusto_T() {
+        return Custo_T;
+    }
+
+    public static void setCusto_T(float[][] Custo_T) {
+        Calculos.Custo_T = Custo_T;
     }
 
     public static void setMinO(float minO) {
@@ -94,10 +107,10 @@ public class Calculos {
     }
     
     //Funcao para gerar a Solucao Inicial
-    public static float[] SolucaoIncial(int qtd)
+    public static int[] SolucaoIncial(int qtd)
     {
         //Criando o vetor que armazenara a solucao
-        float[] solucao = new float [qtd];
+        int[] solucao = new int [qtd];
         
         //Instanciando a biblioteca de randomizacao
         Random random = new Random();
@@ -110,7 +123,7 @@ public class Calculos {
         //Embaralha os valores
         for(int i=solucao.length - 1; i>0; i--){
             int index = random.nextInt(i + 1);
-            float temp = solucao[index];
+            int temp = solucao[index];
             solucao[index] = solucao[i];
             solucao[i] = temp;
             
@@ -118,97 +131,15 @@ public class Calculos {
         return solucao;
     }
     
-    public static float Avalia(float[] solucao, int qtd, float[][] Custo_O, float[][] Custo_T){
+    public static float Avalia(int[] solucao, int qtd, float[][] Custo_O, float[][] Custo_T){
+        float avalia = 0;
         
-        float CustoTotal = 0;
-
-        int[] pesoA = new int [5];
-        int valorPesoA = 1;
-        int[] pesoB = {1, 1, 1, 3, 1, 3, 1, 1, 10, 1};
-        
-        int[] tempo = new int [255];
-        int valorTempo = 1;
-        
-        int CustoTotalAgente = 0;
-        
-        float[] sol = SolucaoIncial(qtd);
-        
-        
-        //Preenche os valores do Peso A deacordo com a tabela do artigo
-        for(int i=0; i<5; i++){
-            if(valorPesoA == 3){
-                valorPesoA++;
-            }
-            pesoA[i] = valorPesoA;
-            valorPesoA++;
-           
-        }
-        
-        for(int i=0; i<255; i++){
-            tempo[i] = valorTempo;
-            valorTempo++;
-        }
-        
-        //Valor Incial do Custo dos Agentes
-        int Custo = 0;
-
-        //Laco para calcular o custo de Cada Agente de 1 a 255 segundos
-        for(int i=0; i<pesoA.length; i++){
-            for(int j=0; j<pesoB.length; j++){
-                for(int t=0; t<tempo.length; t++){
-                    
-                    Custo += CalculoAgente(pesoA[i], pesoB[j], tempo[t]);
-                    
-                }
-            }           
-        }
-
-        
-        //Laco para Calcular a soma do Custo de todos os Agentes com base na Solucao Inicial 
-        for(int i=0; i<sol.length; i++){
+        for(int i=0; i<qtd-1; i++){
             
-            CustoTotalAgente += calcularCustoAgente((int)sol[i], pesoB, tempo);
+                avalia += Custo_O[solucao[i]][solucao[i+1]] + Custo_T[solucao[qtd - 1]][solucao[0]];
         }
+        return avalia;
         
-        System.out.println(CustoTotalAgente);
-        
-        System.out.println(Custo);
-        
-        
-        //Aplica a Avaliacao do problema
-        CustoTotal += Avaliar(CustoTotalAgente, D, DistanciaObjeto);
-        
-        System.out.println(CustoTotal);
-        
-        
-
-        return CustoTotal;
-        
-     
-    }
-    
-    //Calculo de custo de cada Agente
-    private static int CalculoAgente(int id, int acao, int tempo){
-        return id * acao * tempo;
-    }
-    
- public static int calcularCustoAgente(int id, int[] acoes, int[] tempos) {
-        int custoTotal = 0;
-        for (int acao : acoes) {
-            for (int tempo : tempos) {
-                custoTotal += CalculoAgente(id, acao, tempo);
-            }
-        }
-        return custoTotal;
-    }
-    
-    //Calculo para Avaliar
-    private static float Avaliar(int custo, float D, float DistanciaObjeto){
-        
-        
-        float avaliacao = custo/5 + D * DistanciaObjeto;
-        
-        return avaliacao;
     }
 
     

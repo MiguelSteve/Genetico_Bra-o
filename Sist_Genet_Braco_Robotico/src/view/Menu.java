@@ -19,7 +19,7 @@ public class Menu extends javax.swing.JFrame {
     
     
     //Variaveis resultados
-    static float[] solucao;
+    static int[] solucao;
     /**
      * Creates new form Menu
      */
@@ -185,14 +185,13 @@ public class Menu extends javax.swing.JFrame {
     private void btn_Solucao_IncialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Solucao_IncialActionPerformed
         // TODO add your handling code here:
         int qtd = Integer.parseInt(Campo_Tam_Prob.getText());
-        calculo.setTamanhoProblema(qtd);
         
         solucao = calculo.SolucaoIncial(qtd);
         
         Campo_Resultado.setText("");
 
         for(int i=0; i<solucao.length; i++){
-            Campo_Resultado.append(String.format("%.2f\n", solucao[i]));
+        Campo_Resultado.append(""+solucao[i]+",");
         System.out.println(solucao[i]);
         }
     }//GEN-LAST:event_btn_Solucao_IncialActionPerformed
@@ -201,8 +200,9 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         int qtd = Integer.parseInt(Campo_Tam_Prob.getText());
         calculo.setTamanhoProblema(qtd);
-        
+
         float avalia = calculo.Avalia(solucao, qtd, Custo_O, Custo_T);
+        
         Campo_Resultado.setText("");
         Campo_Resultado.setText(String.format("%.2f\n", avalia));
     }//GEN-LAST:event_btn_Avalia_ProblemaActionPerformed
