@@ -41,24 +41,21 @@ public class Menu extends javax.swing.JFrame {
         Campo_Tam_Prob = new javax.swing.JTextField();
         btn_GerarProblema = new javax.swing.JButton();
         btn_Solucao_Incial = new javax.swing.JButton();
-        btn_Avalia_Problema = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Campo_Resultado = new javax.swing.JTextArea();
-        Btn_Sucessores = new javax.swing.JButton();
         Campo_Indice = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        Btn_Subida_Encosta = new javax.swing.JButton();
-        Btn_Sub_Encosta_Alterada = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         Campo_Tempo_Max = new javax.swing.JTextField();
-        Btn_Tempera_Simulada = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         Campo_Temp_Inic = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         Campo_Temp_Final = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         Campo_Fat_Red = new javax.swing.JTextField();
+        Campo_Metodo = new javax.swing.JComboBox<>();
+        Btn_Calc = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,26 +79,12 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btn_Avalia_Problema.setText("Avalia Problema");
-        btn_Avalia_Problema.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Avalia_ProblemaActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Tamanho do problema");
 
         Campo_Resultado.setEditable(false);
         Campo_Resultado.setColumns(20);
         Campo_Resultado.setRows(5);
         jScrollPane1.setViewportView(Campo_Resultado);
-
-        Btn_Sucessores.setText("Sucessores");
-        Btn_Sucessores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_SucessoresActionPerformed(evt);
-            }
-        });
 
         Campo_Indice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,32 +94,11 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel2.setText("Valor Indice");
 
-        Btn_Subida_Encosta.setText("Subida de Encosta");
-        Btn_Subida_Encosta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Subida_EncostaActionPerformed(evt);
-            }
-        });
-
-        Btn_Sub_Encosta_Alterada.setText("Subida de Encosta Alterada");
-        Btn_Sub_Encosta_Alterada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Sub_Encosta_AlteradaActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Tempo Max");
+        jLabel3.setText("Maximo tentativa");
 
         Campo_Tempo_Max.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Campo_Tempo_MaxActionPerformed(evt);
-            }
-        });
-
-        Btn_Tempera_Simulada.setText("Tempera Simulada");
-        Btn_Tempera_Simulada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Tempera_SimuladaActionPerformed(evt);
             }
         });
 
@@ -164,45 +126,56 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        Campo_Metodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Subida de Encosta", "Subida de Encosta Alterada", "Tempera Simulada", "Todos" }));
+        Campo_Metodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Campo_MetodoActionPerformed(evt);
+            }
+        });
+
+        Btn_Calc.setText("Calcular");
+        Btn_Calc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_CalcActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(Btn_Tempera_Simulada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(Btn_Sub_Encosta_Alterada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_GerarProblema, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Campo_Tam_Prob, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_Solucao_Incial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_Avalia_Problema, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Btn_Sucessores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Btn_Subida_Encosta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btn_GerarProblema, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                                .addComponent(Campo_Tam_Prob, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btn_Solucao_Incial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(Campo_Metodo, 0, 1, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
-                        .addGap(190, 190, 190))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Campo_Indice)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Campo_Tempo_Max, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Campo_Temp_Inic)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Campo_Temp_Final))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Campo_Fat_Red, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(Btn_Calc)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Campo_Indice)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Campo_Tempo_Max, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Campo_Temp_Inic)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Campo_Temp_Final)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Campo_Fat_Red, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,13 +183,15 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Campo_Tam_Prob, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Campo_Indice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Campo_Tam_Prob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Campo_Indice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Campo_Fat_Red, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_GerarProblema)
@@ -227,26 +202,18 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(Campo_Tempo_Max, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_Avalia_Problema)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(Campo_Metodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Campo_Temp_Inic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Btn_Sucessores)
-                            .addComponent(Campo_Temp_Inic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Btn_Subida_Encosta)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addComponent(Btn_Calc))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Btn_Sub_Encosta_Alterada)
-                            .addComponent(Campo_Temp_Final, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1)
-                    .addComponent(Campo_Fat_Red, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Btn_Tempera_Simulada)
-                .addContainerGap(127, Short.MAX_VALUE))
+                        .addComponent(Campo_Temp_Final, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         pack();
@@ -318,76 +285,22 @@ public class Menu extends javax.swing.JFrame {
         solucao = calculo.SolucaoIncial(qtd);
         
         Campo_Resultado.setText("");
-
+        
+        avalia = calculo.Avalia(solucao, qtd, Custo_O, Custo_T);
+        
         for(int i=0; i<solucao.length; i++){
-        Campo_Resultado.append(""+solucao[i]+",");
+        Campo_Resultado.append(""+solucao[i]+"--");
+
         System.out.println(solucao[i]);
         }
+        
+        Campo_Resultado.append(String.format("Avalia Incial: %.2f\n", avalia));
+
     }//GEN-LAST:event_btn_Solucao_IncialActionPerformed
-
-    private void btn_Avalia_ProblemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Avalia_ProblemaActionPerformed
-        // TODO add your handling code here:
-        int qtd = calculo.getTamanhoProblema();
-        calculo.setTamanhoProblema(qtd);
-
-         avalia = calculo.Avalia(solucao, qtd, Custo_O, Custo_T);
-        
-        Campo_Resultado.setText("");
-        Campo_Resultado.setText(String.format("%.2f\n", avalia));
-    }//GEN-LAST:event_btn_Avalia_ProblemaActionPerformed
-
-    private void Btn_SucessoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SucessoresActionPerformed
-        // TODO add your handling code here:
-        int qtd = calculo.getTamanhoProblema();
-        indice = Integer.parseInt(Campo_Indice.getText());
-        
-        int[] suc = calculo.Sucessores_Sol_Melhor(solucao, avalia, qtd, Custo_O, Custo_T, indice);
-        
-        float Vm = calculo.Sucessores_Vm(solucao, avalia, qtd, Custo_O, Custo_T, indice);
-        
-        Campo_Resultado.setText("");
-        for(int i=0; i<qtd; i++){
-        Campo_Resultado.append("" + suc[i] + ",");
-        }
-        Campo_Resultado.append(String.format("\n Melhor Valor: " + Vm));
-        
-    }//GEN-LAST:event_Btn_SucessoresActionPerformed
 
     private void Campo_IndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Campo_IndiceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Campo_IndiceActionPerformed
-
-    private void Btn_Subida_EncostaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Subida_EncostaActionPerformed
-        // TODO add your handling code here:
-        int qtd = calculo.getTamanhoProblema();
-        int[] Subida_Encosta = calculo.Subida_Encosta(solucao, avalia, qtd, Custo_O, Custo_T);
-        float Vm = calculo.Subida_Encosta_Vm(solucao, avalia, qtd, Custo_O, Custo_T);
-        
-        Campo_Resultado.setText("");
-        for(int i=0; i<qtd; i++){
-        Campo_Resultado.append("" + Subida_Encosta[i]+ ",");
-        }
-        Campo_Resultado.append(String.format("\n Melhor Valor: " + Vm));
-
-        
-    }//GEN-LAST:event_Btn_Subida_EncostaActionPerformed
-
-    private void Btn_Sub_Encosta_AlteradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Sub_Encosta_AlteradaActionPerformed
-        // TODO add your handling code here:
-        int qtd = calculo.getTamanhoProblema();
-        int t_max = Integer.parseInt(Campo_Indice.getText());
-        
-        int[] Subida_Encosta_Alt = calculo.Subida_Encosta_Alt(solucao, avalia, qtd, Custo_O, Custo_T, t_max);
-        
-        float Vm = calculo.Subida_Encosta_Alt_Vm(solucao, avalia, qtd, Custo_O, Custo_T, t_max);
-        
-        Campo_Resultado.setText("");
-        for(int i=0; i<qtd; i++){
-        Campo_Resultado.append("" + Subida_Encosta_Alt[i]+ ",");
-        }
-        Campo_Resultado.append(String.format("\n Melhor Valor: " + Vm));
-
-    }//GEN-LAST:event_Btn_Sub_Encosta_AlteradaActionPerformed
 
     private void Campo_Tempo_MaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Campo_Tempo_MaxActionPerformed
         // TODO add your handling code here:
@@ -397,26 +310,6 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Campo_Temp_InicActionPerformed
 
-    private void Btn_Tempera_SimuladaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Tempera_SimuladaActionPerformed
-        // TODO add your handling code here:
-        float temp_ini = Integer.parseInt(Campo_Temp_Inic.getText());
-        float temp_final = Float.parseFloat(Campo_Temp_Final.getText());
-        float f_red = Float.parseFloat(Campo_Fat_Red.getText());
-        
-        int qtd = calculo.getTamanhoProblema();
-        
-        int[] Tempera_Simulada_Res = calculo.Tempera_Simulada_Resp(temp_ini, temp_final, f_red, solucao, avalia, qtd, Custo_O, Custo_T, indice);
-        float Vr = calculo.Tempera_Simulada_Vr(temp_ini, temp_final, f_red, solucao, avalia, qtd, Custo_O, Custo_T, indice);
-        
-        Campo_Resultado.setText("");
-        for(int i=0; i<qtd; i++){
-        Campo_Resultado.append("" + Tempera_Simulada_Res[i]+ ",");
-        }
-        Campo_Resultado.append(String.format("\nValor: " + Vr));
-
-        
-    }//GEN-LAST:event_Btn_Tempera_SimuladaActionPerformed
-
     private void Campo_Temp_FinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Campo_Temp_FinalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Campo_Temp_FinalActionPerformed
@@ -424,6 +317,117 @@ public class Menu extends javax.swing.JFrame {
     private void Campo_Fat_RedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Campo_Fat_RedActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Campo_Fat_RedActionPerformed
+
+    private void Btn_CalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CalcActionPerformed
+        // TODO add your handling code here:
+        int qtd = calculo.getTamanhoProblema();
+        int metodo = Campo_Metodo.getSelectedIndex();
+        
+        //Definindo metodo escohido
+        
+    //Subida de Encosta
+        if(metodo == 0){
+
+            int[] Subida_Encosta = calculo.Subida_Encosta(solucao, avalia, qtd, Custo_O, Custo_T);
+            float Vm = calculo.Subida_Encosta_Vm(solucao, avalia, qtd, Custo_O, Custo_T);
+        
+
+        Campo_Resultado.setText("");
+        Campo_Resultado.append("Sucessores Subida de Encosta: ");
+
+        for(int i=0; i<qtd; i++){
+        Campo_Resultado.append("\n" + Subida_Encosta[i]);
+        }
+        Campo_Resultado.append(String.format("\nMelhor Valor: " + Vm));
+        }
+        
+    //Subida de Encosta Alterada
+    if(metodo == 1){
+        int t_max = Integer.parseInt(Campo_Indice.getText());
+        
+        int[] Subida_Encosta_Alt = calculo.Subida_Encosta_Alt(solucao, avalia, qtd, Custo_O, Custo_T, t_max);
+        
+        float Vm = calculo.Subida_Encosta_Alt_Vm(solucao, avalia, qtd, Custo_O, Custo_T, t_max);
+        
+        Campo_Resultado.setText("");
+        Campo_Resultado.append("Sucessores Subida de Encosta Alterada");
+        
+        for(int i=0; i<qtd; i++){
+        Campo_Resultado.append("\n" + Subida_Encosta_Alt[i]);
+        }
+        Campo_Resultado.append(String.format("\nMelhor Valor: " + Vm));
+
+    }
+    //Tempera Simulada
+    if(metodo == 2){
+        float temp_ini = Integer.parseInt(Campo_Temp_Inic.getText());
+        float temp_final = Float.parseFloat(Campo_Temp_Final.getText());
+        float f_red = Float.parseFloat(Campo_Fat_Red.getText());
+                
+        int[] Tempera_Simulada_Res = calculo.Tempera_Simulada_Resp(temp_ini, temp_final, f_red, solucao, avalia, qtd, Custo_O, Custo_T, indice);
+        float Vr = calculo.Tempera_Simulada_Vr(temp_ini, temp_final, f_red, solucao, avalia, qtd, Custo_O, Custo_T, indice);
+        
+        Campo_Resultado.setText("");
+        Campo_Resultado.append("Sucessores Tempera Simulada: ");
+
+        for(int i=0; i<qtd; i++){
+        Campo_Resultado.append("\n" + Tempera_Simulada_Res[i]);
+        }
+        Campo_Resultado.append(String.format("\nValor: " + Vr));
+
+    }
+    //Todos
+    if(metodo == 3){
+          int[] Subida_Encosta = calculo.Subida_Encosta(solucao, avalia, qtd, Custo_O, Custo_T);
+            float Vm = calculo.Subida_Encosta_Vm(solucao, avalia, qtd, Custo_O, Custo_T);
+        
+
+        Campo_Resultado.setText("");
+        Campo_Resultado.append("============================");
+
+        Campo_Resultado.append("\nSucessores Subida de Encosta: ");
+
+        for(int i=0; i<qtd; i++){
+        Campo_Resultado.append("\n" + Subida_Encosta[i]);
+        }
+        Campo_Resultado.append(String.format("\nMelhor Valor: " + Vm));
+       int t_max = Integer.parseInt(Campo_Indice.getText());
+        
+        int[] Subida_Encosta_Alt = calculo.Subida_Encosta_Alt(solucao, avalia, qtd, Custo_O, Custo_T, t_max);
+        
+        float Vm_Alt = calculo.Subida_Encosta_Alt_Vm(solucao, avalia, qtd, Custo_O, Custo_T, t_max);
+        
+        Campo_Resultado.append("\n============================");
+
+        Campo_Resultado.append("\nSucessores Subida de Encosta Alterada");
+        
+        for(int i=0; i<qtd; i++){
+        Campo_Resultado.append("\n" + Subida_Encosta_Alt[i]);
+        }
+        Campo_Resultado.append(String.format("\nMelhor Valor: " + Vm_Alt));
+        
+        float temp_ini = Integer.parseInt(Campo_Temp_Inic.getText());
+        float temp_final = Float.parseFloat(Campo_Temp_Final.getText());
+        float f_red = Float.parseFloat(Campo_Fat_Red.getText());
+                
+        int[] Tempera_Simulada_Res = calculo.Tempera_Simulada_Resp(temp_ini, temp_final, f_red, solucao, avalia, qtd, Custo_O, Custo_T, indice);
+        float Vr = calculo.Tempera_Simulada_Vr(temp_ini, temp_final, f_red, solucao, avalia, qtd, Custo_O, Custo_T, indice);
+        
+        Campo_Resultado.append("\n============================");
+
+        Campo_Resultado.append("\nSucessores Tempera Simulada: ");
+
+        for(int i=0; i<qtd; i++){
+        Campo_Resultado.append("\n" + Tempera_Simulada_Res[i]);
+        }
+        Campo_Resultado.append(String.format("\nValor: " + Vr));
+
+    }
+    }//GEN-LAST:event_Btn_CalcActionPerformed
+
+    private void Campo_MetodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Campo_MetodoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Campo_MetodoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -461,18 +465,15 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Btn_Sub_Encosta_Alterada;
-    private javax.swing.JButton Btn_Subida_Encosta;
-    private javax.swing.JButton Btn_Sucessores;
-    private javax.swing.JButton Btn_Tempera_Simulada;
+    private javax.swing.JButton Btn_Calc;
     private javax.swing.JTextField Campo_Fat_Red;
     private javax.swing.JTextField Campo_Indice;
+    private javax.swing.JComboBox<String> Campo_Metodo;
     private javax.swing.JTextArea Campo_Resultado;
     private javax.swing.JTextField Campo_Tam_Prob;
     private javax.swing.JTextField Campo_Temp_Final;
     private javax.swing.JTextField Campo_Temp_Inic;
     private javax.swing.JTextField Campo_Tempo_Max;
-    private javax.swing.JButton btn_Avalia_Problema;
     private javax.swing.JButton btn_GerarProblema;
     private javax.swing.JButton btn_Solucao_Incial;
     private javax.swing.JLabel jLabel1;
