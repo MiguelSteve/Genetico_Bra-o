@@ -114,12 +114,14 @@ public class Calculos {
     
     public static float Avalia(int[] solucao, int qtd, float[][] Custo_O, float[][] Custo_T){
         float avalia = 0;
-        
+        int tempo = 32;
+        int D = 3;
+        double Distancia = 7.5;
         for(int i=0; i<qtd-1; i++){
             
-                avalia += (Custo_O[solucao[i]][solucao[i+1]] * Custo_T[solucao[i]][solucao[i+1]]);
+                avalia += (Custo_O[solucao[i]][solucao[i+1]] * (Custo_T[solucao[i]][solucao[i+1]] * tempo));
         }
-        avalia += (Custo_O[solucao[qtd - 1]][0] * Custo_T[solucao[qtd - 1]][solucao[0]]);
+        avalia += avalia / 5 + D * Distancia;
         return avalia;
         
     }
@@ -319,13 +321,13 @@ public class Calculos {
         }
     }
      
-     public static int[] Tempera_Simulada_Resp(float temp_ini, float temp_fin, float fat_red, int[] Si, float Vi, int qtd, float[][] Custo_O, float[][] Custo_T, int ind){
+     public static int[] Tempera_Simulada_Resp(double temp_ini, float temp_fin, float fat_red, int[] Si, float Vi, int qtd, float[][] Custo_O, float[][] Custo_T, int ind){
          int[] atual = Si.clone();
          int[] resp = Si.clone();
          float Va = Vi; 
          float Vr = Va;
          
-         float temp = temp_ini;
+         double temp = temp_ini;
          
          while(temp>=temp_fin){
              
@@ -354,14 +356,14 @@ public class Calculos {
          return resp;
 }
      
-     public static float Tempera_Simulada_Vr(float temp_ini, float temp_fin, float fat_red, int[] Si, float Vi, int qtd, float[][] Custo_O, float[][] Custo_T, int ind){
+     public static float Tempera_Simulada_Vr(double temp_ini, float temp_fin, float fat_red, int[] Si, float Vi, int qtd, float[][] Custo_O, float[][] Custo_T, int ind){
          int[] atual = Si.clone();
          int[] resp = Si.clone();
          
          float Va = Vi; 
          float Vr = Va;
          
-         float temp = temp_ini;
+         double temp = temp_ini;
          
          while(temp>=temp_fin){
              
@@ -389,6 +391,30 @@ public class Calculos {
      }
          return Vr;
 }
+     
+     public static double Gerar_Temp_Incial(int qtd, float[][] Custo_O, float[][] Custo_T){
+         ArrayList<int[]> s = new ArrayList<>();
+        float[] v = new float[5]; 
+        int num_sol = 5;
+        float aux = 0;
+
+        for (int i = 0; i < num_sol; i++) {
+            s.add(SolucaoIncial(qtd));
+            v[i] = Avalia(s.get(i), qtd, Custo_O, Custo_T);
+        }
+
+        for (int i = 0; i < num_sol - 1; i++) {
+            for (int j = i + 1; j < num_sol; j++) { 
+                aux += Math.abs(v[i] - v[j]);
+            }
+        }
+
+        aux = aux / (num_sol * (num_sol - 1) / 2);
+
+        double t_ini = -aux / Math.log(0.999);
+
+        return t_ini;
+     }
 }
     
   

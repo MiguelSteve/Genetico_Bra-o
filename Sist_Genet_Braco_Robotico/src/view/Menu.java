@@ -56,6 +56,7 @@ public class Menu extends javax.swing.JFrame {
         Campo_Fat_Red = new javax.swing.JTextField();
         Campo_Metodo = new javax.swing.JComboBox<>();
         Btn_Calc = new javax.swing.JButton();
+        Btn_Temp_Inicial = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,6 +141,13 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        Btn_Temp_Inicial.setText("Gerar Temp Inicial");
+        Btn_Temp_Inicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_Temp_InicialActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,7 +165,9 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(Campo_Metodo, 0, 1, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Btn_Calc)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Btn_Temp_Inicial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Btn_Calc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -205,7 +215,9 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(Campo_Metodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Campo_Temp_Inic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Campo_Temp_Inic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Btn_Temp_Inicial))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -213,7 +225,7 @@ public class Menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Campo_Temp_Final, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
         pack();
@@ -360,7 +372,11 @@ public class Menu extends javax.swing.JFrame {
     }
     //Tempera Simulada
     if(metodo == 2){
-        float temp_ini = Integer.parseInt(Campo_Temp_Inic.getText());
+        String temp = Campo_Temp_Inic.getText();
+        
+        temp = temp.replace(',', '.');
+        
+        double temp_ini = Double.parseDouble(temp);
         float temp_final = Float.parseFloat(Campo_Temp_Final.getText());
         float f_red = Float.parseFloat(Campo_Fat_Red.getText());
                 
@@ -406,7 +422,11 @@ public class Menu extends javax.swing.JFrame {
         }
         Campo_Resultado.append(String.format("\nMelhor Valor: " + Vm_Alt));
         
-        float temp_ini = Integer.parseInt(Campo_Temp_Inic.getText());
+        String temp = Campo_Temp_Inic.getText();
+        
+        temp = temp.replace(',', '.');
+        
+        double temp_ini = Double.parseDouble(temp);
         float temp_final = Float.parseFloat(Campo_Temp_Final.getText());
         float f_red = Float.parseFloat(Campo_Fat_Red.getText());
                 
@@ -428,6 +448,15 @@ public class Menu extends javax.swing.JFrame {
     private void Campo_MetodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Campo_MetodoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Campo_MetodoActionPerformed
+
+    private void Btn_Temp_InicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Temp_InicialActionPerformed
+        // TODO add your handling code here:
+        int qtd = calculo.getTamanhoProblema();
+        double t_ini = calculo.Gerar_Temp_Incial(qtd, Custo_O, Custo_T);
+        
+        Campo_Temp_Inic.setText(String.format("%.2f", t_ini));
+        
+    }//GEN-LAST:event_Btn_Temp_InicialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -466,6 +495,7 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Calc;
+    private javax.swing.JButton Btn_Temp_Inicial;
     private javax.swing.JTextField Campo_Fat_Red;
     private javax.swing.JTextField Campo_Indice;
     private javax.swing.JComboBox<String> Campo_Metodo;
