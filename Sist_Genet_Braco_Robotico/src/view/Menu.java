@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
+import java.util.ArrayList;
+import java.util.List;
 import funcoes.Calculos;
 import java.util.Random;
 
@@ -39,33 +41,20 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         Campo_Tam_Prob = new javax.swing.JTextField();
-        btn_GerarProblema = new javax.swing.JButton();
-        btn_Solucao_Incial = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Campo_Resultado = new javax.swing.JTextArea();
-        Btn_Calc = new javax.swing.JButton();
         Btn_Iniciar_Alg = new javax.swing.JButton();
+        Campo_Pop = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        Campo_Muta = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Campo_Tam_Prob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Campo_Tam_ProbActionPerformed(evt);
-            }
-        });
-
-        btn_GerarProblema.setText("Gerar Problema");
-        btn_GerarProblema.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_GerarProblemaActionPerformed(evt);
-            }
-        });
-
-        btn_Solucao_Incial.setText("Solucao Incial");
-        btn_Solucao_Incial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Solucao_IncialActionPerformed(evt);
             }
         });
 
@@ -76,13 +65,6 @@ public class Menu extends javax.swing.JFrame {
         Campo_Resultado.setRows(5);
         jScrollPane1.setViewportView(Campo_Resultado);
 
-        Btn_Calc.setText("Calcular");
-        Btn_Calc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_CalcActionPerformed(evt);
-            }
-        });
-
         Btn_Iniciar_Alg.setText("Inciar");
         Btn_Iniciar_Alg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,44 +72,69 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        Campo_Pop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Campo_PopActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Tamanho da Populacao");
+
+        Campo_Muta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Campo_MutaActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setText("Taxa Mutacao (apenas abaixo de 1 e maior que 0)");
+        jLabel3.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btn_GerarProblema, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                            .addComponent(Campo_Tam_Prob, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_Solucao_Incial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Btn_Calc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Btn_Iniciar_Alg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(Campo_Muta, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(42, 42, 42)))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                    .addComponent(Campo_Tam_Prob, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Campo_Pop, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Btn_Iniciar_Alg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Campo_Muta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Campo_Tam_Prob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_GerarProblema)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_Solucao_Incial)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Btn_Iniciar_Alg)
-                        .addGap(18, 18, 18)
-                        .addComponent(Btn_Calc))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(87, Short.MAX_VALUE))
+                        .addComponent(Campo_Pop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                        .addComponent(Btn_Iniciar_Alg, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26))))
         );
 
         pack();
@@ -137,10 +144,14 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Campo_Tam_ProbActionPerformed
 
-    private void btn_GerarProblemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GerarProblemaActionPerformed
+    private void mostrarResultado(String mensagem) {
+        Campo_Resultado.append(mensagem + "\n");
+    }
+
+    private void Btn_Iniciar_AlgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Iniciar_AlgActionPerformed
         // TODO add your handling code here:
         
-        //definindo valores da funcao GerarProblema
+            //definindo valores da funcao GerarProblema
         int qtd = Integer.parseInt(Campo_Tam_Prob.getText());
         calculo.setTamanhoProblema(qtd);
         float minO = 5;
@@ -190,54 +201,102 @@ public class Menu extends javax.swing.JFrame {
                 
             }
         }
-    }//GEN-LAST:event_btn_GerarProblemaActionPerformed
+        
+        
+        int tamanhoPopulacao = Integer.parseInt(Campo_Pop.getText());
+        int tamanhoSolucao = calculo.getTamanhoProblema();
+        float taxa_mutacao = Float.parseFloat(Campo_Muta.getText());
 
-    private void btn_Solucao_IncialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Solucao_IncialActionPerformed
-        // TODO add your handling code here:
-        int qtd = calculo.getTamanhoProblema();
-        
-        solucao = calculo.SolucaoIncial(qtd);
-        
-        Campo_Resultado.setText("");
-        
-        avalia = calculo.Avalia(solucao, qtd, Custo_O, Custo_T);
-        
-        for(int i=0; i<solucao.length; i++){
-        Campo_Resultado.append(""+solucao[i]+"--");
+        int[][] pop = calculo.gerarPopulacaoInicial(tamanhoPopulacao, tamanhoSolucao);
+        float[] avaliacoes = calculo.avaliarPopulacao(pop, tamanhoSolucao, Custo_O, Custo_T);
 
-        System.out.println(solucao[i]);
+        // Mostrar população e avaliações no JTextArea
+        mostrarResultado("População inicial e suas avaliações:");
+        for (int i = 0; i < pop.length; i++) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Indivíduo ").append(i).append(": ");
+            for (int j = 0; j < pop[i].length; j++) {
+                sb.append(pop[i][j]).append(" ");
+            }
+            sb.append(" -> Avaliação: ").append(avaliacoes[i]);
+            mostrarResultado(sb.toString());
+        }
+
+        // Criar uma lista para armazenar os indivíduos com avaliação < 3000
+        List<int[]> individuosSelecionados = new ArrayList<>();
+
+        // Selecionar os indivíduos com avaliação < 3000 e armazenar na lista
+        for (int i = 0; i < pop.length; i++) {
+            if (avaliacoes[i] < 3000) {
+                individuosSelecionados.add(pop[i]);
+            }
+        }
+
+        mostrarResultado("Indivíduos com avaliação < 3000:");
+        for (int i = 0; i < individuosSelecionados.size(); i++) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Indivíduo ").append(i).append(": ");
+            int[] individuo = individuosSelecionados.get(i);
+            for (int valor : individuo) {
+                sb.append(valor).append(" ");
+            }
+            mostrarResultado(sb.toString());
+        }
+
+        List<int[]> filhos = calculo.realizarCruzamento(individuosSelecionados, tamanhoPopulacao, tamanhoSolucao);
+
+        mostrarResultado("Filhos gerados:");
+        for (int i = 0; i < filhos.size(); i++) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Indivíduo ").append(i).append(": ");
+            int[] individuo = filhos.get(i);
+            for (int valor : individuo) {
+                sb.append(valor).append(" ");
+            }
+            mostrarResultado(sb.toString());
         }
         
-        Campo_Resultado.append(String.format("Avalia Incial: %.2f\n", avalia));
+ // Converter List<int[]> filhos para int[][]
+        int[][] filhosArray = new int[filhos.size()][];
+        for (int i = 0; i < filhos.size(); i++) {
+            filhosArray[i] = filhos.get(i);
+        }
 
-    }//GEN-LAST:event_btn_Solucao_IncialActionPerformed
+        // Aplicar mutação nos filhos
+        calculo.aplicarMutacao(filhosArray, taxa_mutacao);
 
-    private void Btn_CalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CalcActionPerformed
-
-    }//GEN-LAST:event_Btn_CalcActionPerformed
-
-    private void Btn_Iniciar_AlgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Iniciar_AlgActionPerformed
-        // TODO add your handling code here:
-    int tamanhoPopulacao = 160;
-    int tamanhoSolucao = 6; // Definir o tamanho da solução conforme necessário
-    float taxaCruzamento = 0.5f;
-    float taxaMutacao = 0.05f;
-    int numeroGeracoes = 11;
-    float intervaloElitismo = 0.5f;
-    
-    int[][] populacao = calculo.gerarPopulacaoInicial(tamanhoPopulacao, tamanhoSolucao);
-    
-    for (int geracao = 0; geracao < numeroGeracoes; geracao++) {
-                
-        int[] melhorIndividuoIndex = calculo.selecionarMelhoresIndividuos(populacao, tamanhoSolucao, Custo_O, Custo_T);
+        // Exibir os filhos após a mutação
+        mostrarResultado("Filhos após a mutação:");
+        for (int i = 0; i < filhosArray.length; i++) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Indivíduo ").append(i).append(": ");
+            int[] individuo = filhosArray[i];
+            for (int valor : individuo) {
+                sb.append(valor).append(" ");
+            }
+            mostrarResultado(sb.toString());
+        }
         
-        int[][] novaPopulacao = calculo.realizarCruzamento(populacao, melhorIndividuoIndex, taxaCruzamento);
+         int[][] filhosAposMutacao = new int[filhos.size()][];
+        for (int i = 0; i < filhos.size(); i++) {
+            filhosAposMutacao[i] = filhos.get(i);
+        }
         
-        calculo.aplicarMutacao(novaPopulacao, taxaMutacao);
         
-    }
     
+   
+        
+
+        
     }//GEN-LAST:event_Btn_Iniciar_AlgActionPerformed
+
+    private void Campo_PopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Campo_PopActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Campo_PopActionPerformed
+
+    private void Campo_MutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Campo_MutaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Campo_MutaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,13 +334,14 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Btn_Calc;
     private javax.swing.JButton Btn_Iniciar_Alg;
+    private javax.swing.JTextField Campo_Muta;
+    private javax.swing.JTextField Campo_Pop;
     private javax.swing.JTextArea Campo_Resultado;
     private javax.swing.JTextField Campo_Tam_Prob;
-    private javax.swing.JButton btn_GerarProblema;
-    private javax.swing.JButton btn_Solucao_Incial;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,7 @@
 package funcoes;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Calculos {
@@ -141,6 +143,17 @@ public static float Custo(int[] solucao, int qtd, float[][] Custo_O, float[][] C
 
         return avalia;
     }
+    
+    public static float[] avaliarPopulacao(int[][] populacao, int tamanhoSolucao, float[][] Custo_O, float[][] Custo_T) {
+    int tamanhoPopulacao = populacao.length;
+    float[] avaliacoes = new float[tamanhoPopulacao];
+
+    for (int i = 0; i < populacao.length; i++) {
+        avaliacoes[i] = Avalia(populacao[i], tamanhoSolucao, Custo_O, Custo_T);
+    }
+
+    return avaliacoes;
+}
 
     public static int[][] gerarPopulacaoInicial(int tamanhoPopulacao, int tamanhoSolucao) {
         int[][] populacao = new int[tamanhoPopulacao][tamanhoSolucao];
@@ -152,100 +165,70 @@ public static float Custo(int[] solucao, int qtd, float[][] Custo_O, float[][] C
         return populacao;
     }
 
-    public static void Mutacao(int[][] populacao, float deltaT) {
-        Random random = new Random();
-        int individuoIndex = random.nextInt(populacao.length);
-        int acaoIndex = random.nextInt(populacao[individuoIndex].length);
-        populacao[individuoIndex][acaoIndex] += deltaT;
-    }
-
-   public static int[][] executarAlgoritmoGenetico(int tamanhoPopulacao, int tamanhoSolucao,
-                                                float[][] Custo_O, float[][] Custo_T, int numeroGeracoes,
-                                                float taxaCruzamento, float taxaMutacao) {
-    Random random = new Random();
-
-    // 1. Gerar população inicial
-    int[][] populacao = gerarPopulacaoInicial(tamanhoPopulacao, tamanhoSolucao);
-
-    // Executar o algoritmo por um número específico de gerações
-    for (int geracao = 0; geracao < numeroGeracoes; geracao++) {
-
-        // 2. Selecionar o melhor indivíduo da população
-        int[] melhorIndividuoIndex = selecionarMelhoresIndividuos(populacao, tamanhoSolucao, Custo_O, Custo_T);
-
-        // 3. Realizar o cruzamento (crossover)
-        int[][] novaPopulacao = realizarCruzamento(populacao, melhorIndividuoIndex, taxaCruzamento);
-
-        // 4. Aplicar mutação na nova população
-        aplicarMutacao(novaPopulacao, taxaMutacao);
-
-        // Atualizar a população para a próxima geração
-        populacao = novaPopulacao;
-    }
-
-    return populacao;
-}
-
-
-   public static int[] selecionarMelhoresIndividuos(int[][] populacao, int qtd, float[][] Custo_O, float[][] Custo_T) {
-    int[] melhoresIndividuos = new int[1]; // Ajuste para tamanho 1
-    float menorCusto = Float.POSITIVE_INFINITY;
-
-    for (int i = 0; i < populacao.length; i++) {
-        int[] solucao = populacao[i];
-        float custo = Custo(solucao, qtd, Custo_O, Custo_T);
-        double precisao = PrecisaoPosicionamento(solucao, Custo_O);
-
-        if (precisao <= 3 && custo < menorCusto) {
-            menorCusto = custo;
-            melhoresIndividuos[0] = i; // Ajuste aqui para armazenar apenas um índice
+   
+ // Método para selecionar os indivíduos com avaliação menor que um determinado limite
+    public static List<int[]> selecionarIndividuos(int[][] pop, float[] avaliacoes, float limite) {
+        List<int[]> individuosSelecionados = new ArrayList<>();
+        for (int i = 0; i < pop.length; i++) {
+            if (avaliacoes[i] < limite) {
+                individuosSelecionados.add(pop[i]);
+            }
         }
+        return individuosSelecionados;
     }
+    
+    
 
-    return melhoresIndividuos;
-}
-
-
-public static int[][] realizarCruzamento(int[][] populacao, int[] melhoresIndividuos, float taxaCruzamento) {
+ public static List<int[]> realizarCruzamento(List<int[]> individuosSelecionados, int tamanhoPopulacao, int tamanhoSolucao) {
+        List<int[]> novaPopulacao = new ArrayList<>();
         Random random = new Random();
-        int[][] novaPopulacao = new int[populacao.length][populacao[0].length];
 
-        int numFilhos = (int) (populacao.length * taxaCruzamento);
+        // Realizar cruzamento até preencher a nova população
+        while (novaPopulacao.size() < tamanhoPopulacao) {
+            // Escolher dois indivíduos aleatórios para cruzamento
+            int index1 = random.nextInt(individuosSelecionados.size());
+            int index2 = random.nextInt(individuosSelecionados.size());
 
-        for (int i = 0; i < numFilhos; i++) {
-            int pai1Index = melhoresIndividuos[random.nextInt(melhoresIndividuos.length)];
-            int pai2Index = melhoresIndividuos[random.nextInt(melhoresIndividuos.length)];
-
-            int[] pai1 = populacao[pai1Index];
-            int[] pai2 = populacao[pai2Index];
-            int[] filho = new int[pai1.length];
-
-            int pontoCorte = random.nextInt(pai1.length);
-
-            for (int j = 0; j < pai1.length; j++) {
-                filho[j] = (j <= pontoCorte) ? pai1[j] : pai2[j];
+            // Garantir que os índices escolhidos sejam diferentes
+            while (index2 == index1) {
+                index2 = random.nextInt(individuosSelecionados.size());
             }
 
-            novaPopulacao[i] = filho;
-        }
+            // Realizar o cruzamento entre os indivíduos selecionados nos índices escolhidos
+            int[] pai1 = individuosSelecionados.get(index1);
+            int[] pai2 = individuosSelecionados.get(index2);
 
-        for (int i = numFilhos; i < populacao.length; i++) {
-            novaPopulacao[i] = populacao[i];
+            // Ponto de cruzamento (crossover point)
+            int pontoCruzamento = random.nextInt(tamanhoSolucao);
+
+            // Criar o filho resultante do cruzamento
+            int[] filho = new int[tamanhoSolucao];
+            for (int i = 0; i < tamanhoSolucao; i++) {
+                if (i < pontoCruzamento) {
+                    filho[i] = pai1[i];
+                } else {
+                    filho[i] = pai2[i];
+                }
+            }
+
+            // Adicionar o filho à nova população
+            novaPopulacao.add(filho);
         }
 
         return novaPopulacao;
     }
 
-    public static void aplicarMutacao(int[][] populacao, float taxaMutacao) {
-    Random random = new Random();
+    public void aplicarMutacao(int[][] populacao, float taxaMutacao) {
+        Random random = new Random();
 
-    for (int i = 0; i < populacao.length; i++) {
-        if (random.nextFloat() < taxaMutacao) {
-            for (int geneIndex = 0; geneIndex < populacao[i].length; geneIndex++) {
-                populacao[i][geneIndex] += 0.5f * populacao[i][geneIndex];
+        for (int i = 0; i < populacao.length; i++) {
+            if (random.nextFloat() < taxaMutacao) {
+                for (int geneIndex = 0; geneIndex < populacao[i].length; geneIndex++) {
+                    populacao[i][geneIndex] += 0.5f * populacao[i][geneIndex];
+                }
             }
         }
     }
-}
+     
 
 }
