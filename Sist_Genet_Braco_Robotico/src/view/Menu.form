@@ -24,47 +24,22 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="btn_GerarProblema" alignment="0" pref="176" max="32767" attributes="0"/>
-                              <Component id="Campo_Tam_Prob" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btn_Solucao_Incial" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="jLabel1" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="btn_GerarProblema" alignment="0" pref="176" max="32767" attributes="0"/>
+                          <Component id="Campo_Tam_Prob" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btn_Solucao_Incial" alignment="0" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="jLabel1" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="Campo_Metodo" alignment="0" pref="0" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="Btn_Temp_Inicial" max="32767" attributes="0"/>
-                          <Component id="Btn_Calc" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="Btn_Calc" alignment="1" min="-2" pref="127" max="-2" attributes="0"/>
+                  <Component id="Btn_Iniciar_Alg" alignment="1" min="-2" pref="127" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="Campo_Indice" max="32767" attributes="0"/>
-                  <Component id="jLabel3" max="32767" attributes="0"/>
-                  <Component id="Campo_Tempo_Max" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jLabel4" max="32767" attributes="0"/>
-                  <Component id="Campo_Temp_Inic" max="32767" attributes="0"/>
-                  <Component id="jLabel5" max="32767" attributes="0"/>
-                  <Component id="Campo_Temp_Final" max="32767" attributes="0"/>
-                  <Component id="jLabel2" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
-                  <Component id="Campo_Fat_Red" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
-              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="470" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="260" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -72,50 +47,23 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jLabel1" min="-2" pref="22" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Campo_Tam_Prob" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Campo_Indice" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Campo_Fat_Red" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="Campo_Tam_Prob" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btn_GerarProblema" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="btn_GerarProblema" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btn_Solucao_Incial" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Campo_Tempo_Max" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Campo_Metodo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Campo_Temp_Inic" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Btn_Temp_Inicial" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Btn_Calc" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Campo_Temp_Final" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_Solucao_Incial" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="Btn_Iniciar_Alg" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="Btn_Calc" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="276" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="169" max="32767" attributes="0"/>
+              <EmptySpace pref="87" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -163,74 +111,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="Campo_Indice">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Campo_IndiceActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Valor Indice"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Maximo tentativa"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="Campo_Tempo_Max">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Campo_Tempo_MaxActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Temperatura Inicial"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="Campo_Temp_Inic">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Campo_Temp_InicActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Temperatura Final"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="Campo_Temp_Final">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Campo_Temp_FinalActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Fator Redutor"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="Campo_Fat_Red">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Campo_Fat_RedActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="Campo_Metodo">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Subida de Encosta"/>
-            <StringItem index="1" value="Subida de Encosta Alterada"/>
-            <StringItem index="2" value="Tempera Simulada"/>
-            <StringItem index="3" value="Todos"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Campo_MetodoActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JButton" name="Btn_Calc">
       <Properties>
         <Property name="text" type="java.lang.String" value="Calcular"/>
@@ -239,12 +119,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_CalcActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Btn_Temp_Inicial">
+    <Component class="javax.swing.JButton" name="Btn_Iniciar_Alg">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Gerar Temp Inicial"/>
+        <Property name="text" type="java.lang.String" value="Inciar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_Temp_InicialActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_Iniciar_AlgActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
